@@ -319,3 +319,95 @@ let dean = {
 //console.log(dean[sam['castiel']]); //dean['mary'] = chuck
 //console.log(dean[sam[castiel]]); //WONT WORK dean[sam[undefined]]
 
+                    //QUESTION 13
+
+//USING 'this' inside an object
+//THE OBJECT HAS FUNCTIONS CREATED THREE DIFFERENT WAYS
+//WHAT WILL BE THE RESULT OF THE THREE LOG STATEMENTS?
+
+const circle = {
+    radius: 10,
+    circumference: function () {
+        console.log(this)
+        return (2 * Math.PI * this.radius);
+
+    },
+    //es6 shorthand
+    diameter() {
+        console.log(this)
+        return (this.radius * 2);
+    },
+    //es6 arrow function
+    area: () => {
+        console.log(this)
+        return (Math.PI * Math.PI * this.radius) //NaN
+    }
+}
+
+console.log(circle.area()); //NaN
+console.log(circle.diameter()); //20
+console.log(circle.circumference());//20*pi
+
+
+
+                    //QUESTION 14
+//write a function to determine if a number is an integer
+
+
+// let isInt = function(num){
+//     if(Number.isInteger(num)){
+//         return 'given is a integer'
+//     }else{
+//         return 'not a integer'
+//     }
+
+// }
+console.log(typeof 3)
+let isInt = function (num) {
+    return (typeof num === "number" && parseInt(num) === num)
+    //or return (!NaN(num) && parseInt(num) === num)
+}
+
+console.log(3, isInt(3));
+console.log(3.5, isInt(3.5));
+console.log(1.0000, isInt(1.00000));
+
+
+
+                        //QUESTION 15
+//WRITE A FUNCTION TO DETERMINE IF ONE STRING IS
+//A CASE-INSENSITIVE ANAGRAM OF ANOTHER STRING
+
+// let inAnagram = function(str1, str2){
+//     let store = []
+//     if(str1.length === str2.length ){
+//         for(i=0;i<str1.length;i++){
+//         store.push(str1[i])
+//         }
+
+//     }
+
+//     for(i=0;i<store.length;i++){
+//         for(j=0;j<store.length;j++){
+//             if(store[i]===str2[j]){
+//                 return true
+//             }else{
+//                 return false
+//             }
+
+//         }
+//     }
+
+
+
+// }
+
+let isAnagram = function (str1, str2) {
+    let sorted1 = str1.split('').sort().join('').toLowerCase()
+    let sorted2 = str2.split('').sort().join('').toLowerCase()
+
+    return (sorted1 === sorted2)
+}
+
+console.log(isAnagram('hello', 'jello'));
+console.log(isAnagram('hello', 'loelh'));
