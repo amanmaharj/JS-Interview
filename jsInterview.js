@@ -150,3 +150,47 @@ obj1.start();
 console.log(obj1.currentState());
 console.log(obj2.currentState());
 
+//QUESTION 7
+
+//SOLVE THE PROBLEM OCCURING IN THE SECOND CLOSURE EXAMPLE
+
+//SIMPLE CLOSURE
+
+function f1(a) {
+    let b = 2;
+    setTimeout(function () {
+        console.log(a, b)
+
+    }, 1000)
+}
+
+//closure with a problem
+function f2() {
+    for (let i = 1; i < 11; i++) {
+        setTimeout(function () {
+            console.log('you got: ' + i)
+        }, 1000 * i);
+    }
+}
+
+f2()
+//solution changing var to let;
+//solution 
+function f3() {
+    for (let i = 1; i < 11; i++) {
+        setTimeout(function () {
+            console.log('you got: ' + i)
+        }, 1000 * i);
+    }
+    //i no longer exist
+}
+
+//another solution is using the bind method
+
+function f4() {
+    for (var i = 0; i < 11; i++) {
+        setTimeout((function () {
+            console.log(i)
+        }).bind(null, i), 1000 * i)
+    }
+}
