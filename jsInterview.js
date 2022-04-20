@@ -1,4 +1,4 @@
-//                          QUESTION 1
+                         //  QUESTION 1
 // console.log('a');
 // let timmy = setTimeout(function (){
 //     console.log('b')
@@ -114,6 +114,7 @@ let obj = (function () {
     let objInstance; //private variable
     function create() { //private function to create methods and properties
         let _isRunning = false;
+
         let start = function () {
             _isRunning = true;
         }
@@ -166,7 +167,7 @@ function f1(a) {
 
 //closure with a problem
 function f2() {
-    for (let i = 1; i < 11; i++) {
+    for (var i = 1; i < 11; i++) {
         setTimeout(function () {
             console.log('you got: ' + i)
         }, 1000 * i);
@@ -185,6 +186,7 @@ function f3() {
     //i no longer exist
 }
 
+
 //another solution is using the bind method
 
 function f4() {
@@ -194,3 +196,42 @@ function f4() {
         }).bind(null, i), 1000 * i)
     }
 }
+
+//QUESTION 8
+//create an array that is prepopulated
+//with 5 random numbers
+
+function randomNumberInc(min, max) {
+    min = Math.ceil(min)
+    max = Math.floor(max)
+
+    return Math.floor(Math.random() * (max - min + 1) + min)
+}
+let a1 = Array.from({
+    length: 5
+}, n => randomNumberInc(2, 5))
+
+console.log('this is the number from Array.from method', a1)
+
+let a2 = new Array(5).fill(null).map(n =>
+    randomNumberInc(1, 20)
+)
+console.log('This is the number from New Array object', a2)
+
+//Practise in random number generator
+
+// function randomNum(max) {
+//    return Math.floor(Math.random() * max)
+// }
+
+// function randomNumint(min, max){
+//     max = Math.floor(max)
+//     min = Math.ceil(min)
+
+//     return Math.floor(Math.random()*(max-min+1) + min)
+// }
+
+// console.log('this is the random number ' + [randomNumint(1,5)])
+
+
+
