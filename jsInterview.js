@@ -151,7 +151,7 @@ obj1.start();
 console.log(obj1.currentState());
 console.log(obj2.currentState());
 
-//QUESTION 7
+                            //QUESTION 7
 
 //SOLVE THE PROBLEM OCCURING IN THE SECOND CLOSURE EXAMPLE
 
@@ -197,7 +197,7 @@ function f4() {
     }
 }
 
-//QUESTION 8
+                            //QUESTION 8
 //create an array that is prepopulated
 //with 5 random numbers
 
@@ -234,4 +234,88 @@ console.log('This is the number from New Array object', a2)
 // console.log('this is the random number ' + [randomNumint(1,5)])
 
 
+                            //QUESTION 9
+
+//VAR HOISTING VS LET HOISTING
+//WHAT WILL BE THE OUTPUT FROM THIS CODE AND WHY?
+
+function foo() {
+    //area is hoisted as "area = undefined"
+    //name is hoisted as "name"
+    if (area !== undefined) {
+        console.log('var', area)
+    }
+    try {
+        console.log('let', name)
+    } catch (err) {
+        console.log(err.name)
+        console.log(err.message)
+    }
+
+
+
+    let name = 'Bert'
+    var area = 'Geology'
+}
+
+foo()
+//LET ARE NOT DEFINED AND THEY HAVEN'T GIVEN ANY DEFAULT VALUE AND CANNOT BE USED. WE CAN USE TRY CATCH TO RUN THE error-CODE.
+
+
+
+                                 //QUESTION 10          
+// Generate Random Hex Colour Values
+
+function color() {
+    let c = Math.random()
+    console.log('this is the random number generated', c)
+    c = c.toString(16)
+    console.log('this is the color hex number with', '#' + c)
+    c = c.substring(2, 8)
+    console.log('this is the color in hex number with substring', '#' + c)
+}
+
+color()
+
+
+                            //QUESTION 11
+//WHY DO WE GET THIS WEIRD RESULT FROM THE MAP METHOD?
+//MYARRAY.MAP(FUNC)
+//WE WANT TO CONVERT 3 STRING INTO NUMBERS
+
+let result1 = ['1', '7', '11'].map(parseInt)
+
+//parseInt(string, radix)
+//parseInt('1', 0)
+//parseInt('7', 1)
+//parseInt('11', 2)
+
+//will give you 1 nan 3 as the result this is because when we use parseInt we are also sending number and redix as the parameter but since
+//the index of the array will act as the redix as the parameter then 1 will print ok as number will be 1 and radix will be 0 but in the second 
+//time when 7 will be entered the radix will be 1 which is ok but the number 7 will be invalid and will give nan not a number
+//third time when 11 will be enter the radix will be base 2 so 7 in base 2 is 3 in decimal when convert.
+let result = ['5', '8', '9'].map((x) => {
+    return Number(x)
+}
+)
+console.log(result);
+
+                                //QUESTION 12.
+
+
+// Differences between dot notation and square bracket syntax
+
+let sam = {
+    castiel: "mary"
+}
+let dean = {
+    john: "crowley",
+    mary: "chuck"
+}
+
+//which, if any, of these three log statements will work?
+//console.log(dean[sam.castiel]);//dean['mary'] = chuck
+//console.log(dean.sam.castiel);  //WONT WORK
+//console.log(dean[sam['castiel']]); //dean['mary'] = chuck
+//console.log(dean[sam[castiel]]); //WONT WORK dean[sam[undefined]]
 
