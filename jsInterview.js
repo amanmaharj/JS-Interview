@@ -411,3 +411,242 @@ let isAnagram = function (str1, str2) {
 
 console.log(isAnagram('hello', 'jello'));
 console.log(isAnagram('hello', 'loelh'));
+                          
+                            //question 16
+
+                                
+//write a function to determine the largest difference between any two numbers in an array of numberts
+
+let numbers = [12, 2, 6, 5, 5, 5, 9, 10, 33];
+
+let difference = (function (arr) {
+
+    //remove duplicates with set
+    //pass set back to an array
+    //numerical sort
+    let answer = Array.from(new Set(arr)).sort((a, b) => a - b);
+    //now we need to make sure the highest difference bewteen the sort
+    return (answer[answer.length - 1] - answer[0])
+
+})(numbers)
+
+console.log('here is the numbers difference ' + difference)
+
+
+
+                            //QUESTION 17
+//WRITE A FUNCTION TO DETERMINE IF THE SUPPLIED STRING IS A PALLINDROME
+//EG: RADAR, RACECAR
+//THEY ARE TEH SPELLED SAME BACKWARDS AND FORWARDS
+
+let palindrome = function (word) {
+    let comp = []
+    let rword = ''
+
+    for (i = 0; i < word.length; i++) {
+        comp.push(word[i])
+    }
+
+    for (i = 0; i < word.length; i++) {
+        rword += comp.pop()
+
+    }
+
+    if (word === rword) {
+        return 'pallindrome'
+    }
+    return 'not pallindrome'
+
+}
+
+//another method
+let pallin = function (word) {
+    let len = word.length
+    let start = word.substring(0, Math.floor(len / 2)).toLowerCase()
+
+    let end = word.substring(len - Math.floor(len / 2)).toLowerCase()
+
+    let flip = end.split('').reverse().join('')
+
+    return start === flip
+
+}
+
+console.log(palindrome('radar'))
+console.log(palindrome('window'));
+
+                     //QUESTION 18
+
+
+(function f1() {
+     var a = 1, b = 1;
+    var x = y = 2;
+})();
+
+
+(function f2() {
+    let j = 1, k = 1;
+    let r = s = 2;
+})();
+
+//what are the values for a, b, x, y, j, k, r, s in the global scope?
+//which of these variables will exist on the window/global object?
+console.log('the global value of s is : ' + global.s); //will return 2 as the variable when created as multiple variable using only one decleration wil make the second one global scope
+console.log('the global value of a is : ' + global.a); //will return undefined as the variable is in function scope
+
+
+                                        //QUESTION 19
+
+//WRITE A SCRIPT TO DETERMINE THE BRIGHTNESS OF THE BACKGROUND COLOUR AND SET THE TEXT COLOR AS EITHER WHITE OR BLACK
+//3 6 1
+
+
+let log = console.log;
+
+let textColor = bg =>{
+    bg = bg.replace('#','');
+    //check the length
+    //11110000 111100000 11110000
+    let red = parseInt(bg, 16) >>> 16;  //parseInt(bg.substring(0,2),16)
+    let green = (parseInt(bg, 16) >>> 8) & 255; //parseInt(bg.substring(2,5),16)
+    let blue = parseInt(bg,16) & 255//parseInt(bg.substring(4),16)
+
+    let intensity = (red*0.3) + (green*0.6) + (blue*0.1)
+
+    if(intensity>181){
+        return "#000000";
+    }else{
+        return "#FFFFFF"
+    }
+   
+}
+
+
+log(textColor('#BADA55')); //A BRIGHT GREEN
+log(textColor('#F0E68C')); //KHAKI
+log(textColor('#990000'));//REBECCAPURPLE
+log(textColor('#6495ED'));//CORNFLOWERBLUE
+
+
+                                        //QUESTION 20
+
+
+//WRITE A SCRIPT THAT WILL FIND ALL THE VOWELS [A,E,I,O,U] INSIDE ANY STRING AND FLIP THE ORDER OF ONLY THE VOWELS. IF THERE IS AN ODD NUMBER OF VOWELS
+//THEN THE ONE IN THE MIDDLE STAYS IN THE SAME POSITION. COMPLETE THIS TASK WITH THE EG
+
+//COTTAGE = CETTAGO
+
+//HELLO = HOLLE
+
+//SAUCE = SEUCA
+
+//JAVASCRIPT = JIVASCRIPT
+
+
+let Log = console.log;
+let process = word =>{
+    //word = hello
+   
+    let matches = Array.from(word).reduce((prev,curr, idx)=>{
+                
+        if(['a','e','i','o','u'].includes(curr)){
+            prev.push(idx)
+        }
+         return prev;
+    },[]);
+   
+    Log(matches)//position of the vowels
+
+    let len = matches.length;//[1,3,7] //the array where the aeiou contains in 'javascript'
+    let wordCopy = Array.from(word);//array of the string "javascript"
+    console.log('this is the copy of the word',wordCopy)
+    for(let i = 1;i<len/2;i++){
+        console.log(3/2)
+        let ltr = word.substring(matches[len - i], matches[len-i]+1);
+        let removed = wordCopy.splice(matches[i-1],1,ltr)
+        wordCopy.splice(matches[len-i],1, removed[0])
+        word = wordCopy.join('')
+
+    }
+    return word;
+
+};
+
+Log(process('javascript'));
+
+
+
+
+
+
+
+
+            //finding the element using set
+// let zea = [1,2,3,3]
+// let ass = [2,4,5]
+
+// let setA = new Set(zea)
+
+
+
+// for(i=0;i<ass.length;i++){
+   
+//     let pos = (setA.has(ass[i]))
+//     if(pos){
+//         console.log(ass[i],'found')
+//     }
+// }
+
+
+                    //finding the collection of the both 
+// let jack = ['aman','hari','rock','jackson']
+// let king = ['rock','jackson']
+// jack.map((el)=>{
+//     for(i=0;i<king.length;i++){
+//        if(king[i]===el){
+//            console.log('match')
+//        }else{
+//            console.log('not match')
+//        }
+//     }
+    
+// })
+
+            //the way to reverse all teh array of the elememnt of the array
+// let Array1 = ['apple','bananna']
+
+// Array1.forEach((el)=>{
+//    let x = el.toString()
+//    console.log( el.split('').reverse().join(''))
+// })
+
+
+// Array1.join('').reduce((curr,idx,acc)=>{
+//     if(Array1.includes(curr)){
+//         return()
+//     }
+// })
+
+// console.log(Array1)
+
+                        //Question 21                      
+                        //what will be the output of the following console.log?
+
+
+                        let obbj = {
+                            'a': 'three',
+                            b: 4,
+                            'c': "five",
+                            a: 3,
+                            'b': "four",
+                            "c": 'five',
+                            "a": "tre",
+                            "b": 'fyra',
+                            c: 5
+                        };
+                        //in objects the key is always stored in string whether you defined by the "" or not whaterver
+
+                        console.log(obbj);
+
+
+
