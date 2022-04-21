@@ -648,5 +648,100 @@ Log(process('javascript'));
 
                         console.log(obbj);
 
+                         //QUESTION 22
+
+
+//WHAT WILL BE THE OUTPUT FROM THE CONSOLE.LOG AND WHY?
+
+let box = {};
+
+let bag = {
+    prop: 'bag',
+    can: 'box'
+};
+
+let can = {
+    prop: "can",
+    bag: "box"
+}
+
+box[bag] = 'Monday';// box['[Object object]'] = 'Monday' box{[{bag}]}
+box[can] = "Tuesday"//box['[Object object]'] = 'Tuesday'
+
+
+console.log(box[bag])//tuesday
+
+
+                    //QESTION 23
+
+/***
+ * What will be the output of this code and why?
+ */
+ let obja = { a: 1 };
+ let objb = { a: 1 };
+ 
+ if ({ a: 1 } === { a: 1 }) {
+   console.log("Monday"); //no match because in the case of non primitive data types the two object stored act as different variable.
+ } else if ({ a: 1 } == { a: 1 }) {
+   console.log("Tuesday");//no match because of non primitive data types.
+ } else if (obja == { a: 1 }) {
+   console.log("Wednesday");//no match because of non primitive data types
+ } else if (obja == objb) {
+   console.log("Thursday");//no match because of non primitive data types
+ } else if (Object.is(obja, objb)) {
+   console.log("Friday");//no match because of non primitive data types
+ } else {
+   console.log("Saturday");//match
+ }
+                //Question 24       
+//what will be the output of the following two loops be?
+
+const numbs = [1, 2, 3];
+numbs[10] = 11;
+
+for (let i = 0; i < numbs.length; i++) {
+  console.log(i, numbs[i]);
+}//this will print each index and value
+numbs.forEach((num, idx) => {
+  console.log(idx, num);
+  //this will print only the item and index that contains
+
+});
+
+
+
+                    //QUESTINS 25
+
+
+//CREATE AN EXAMPLE OF A CALLBACK FUNCTIONS WITH MULTIPLE PARAMETERS AND THEN SHOW IT BEING USED
+
+let myCallBack = function(goodfunc, badfunc, character){
+    let timmy = Math.floor(Math.random)
+
+    if(character.isGood){
+        setTimeout(goodfunc, timmy, character.name)
+    }else{
+        setTimeout(badfunc, timmy, character.name)
+    }
+}
+
+let ftw = function(name){
+    console.log("Depending on the season, ", name, " is a good guy")
+};
+
+let wtf = function(name){
+    console.warn('Depending on the season, ',name, 'is a bad guy')
+};
+
+let app = (function(){
+    const castiel = {name: "castiel", isGood: true}
+
+    const crowley = {name: "crowley", isGood: false}
+
+
+    //use callback function here
+    myCallBack(ftw, wtf, castiel)
+    myCallBack(ftw, wtf, crowley)
+})()
 
 
