@@ -745,3 +745,174 @@ let app = (function(){
 })()
 
 
+                                     //QUESTION 26
+
+
+//FINISH THE FOLLOWING SCRIPT TO EXTENDS THE BUILT-IN
+//JAVASCRIPT STRING OBJECT
+//SO IT HAS A METHOD WHICH WILL REVERSE THE ORDER OF CHARACTERS IN A STRING AND  RETURN THE RESULTING REVERSED STRING
+//IT SHOULD RUN WITH CODE PROVIDED
+
+//BONUS MARKS IF IT IGNORES PUNCTUATION AT THE END OF THE STRING.
+
+let str = 'Can I use Google during the interview?'
+
+String.prototype.flip = function(){
+    //console.log(this) this is the value
+    let str = this;
+    let end = ''
+    let punctuation = /[!.?]/;
+
+    let matches = str.match(punctuation);
+   
+    if(matches){
+        end = matches[0]
+        str = str.replace(end, '')
+     }
+    return str.split('').reverse().join('').replace('?',"") + end
+}
+
+console.log(str.flip())
+
+                                    //QUESTION 27
+
+
+   
+/**
+ * What will the value of the three log statements be?
+ */
+let n1 = 111; //primitive
+let n2 = new Number(123);//when you are creating the new keyword you are creating the object
+let n3 = Number(123);//primitive
+n1.prop = true;
+n2.prop = true;
+n3.prop = true;
+console.log(n1.prop); //undefined
+console.log(n2.prop);//true
+console.log(n3.prop); //undefined                    
+
+
+                                    //QUESTION 28
+    
+//WHAT WILL BE THE PUTPUT OF THE THREE LOG STATEMENTS AND IN WHAT ORDER
+
+(()=>{
+    let one, two; //will be set to 321
+    try{
+        throw new Error(321);
+    }catch(one){
+        (one = 123),(two = 321)
+        console.log(one) //print the first part '123'
+    }
+
+    console.log(one); //newver assigned the value form the first so undefined
+
+    console.log(two);//321 this is the third part '321'
+    //first it will print 123 from the catch statement then it will print undefined from console.log(one) because in here we have defined the variable one but there is no assined of the value then it will print 321 from console.log(two) statement because we have defined two and assigned that vaialvel in catch statement.
+    
+})();
+
+
+
+// try{
+//     nonExistenceFunction()
+// }catch(error){
+//     console.log(error)
+// }
+
+// try {
+//     throw 'myException'; // generates an exception
+// } catch (e) {
+//     // statements to handle any exceptions
+//     logMyErrors(e); // pass exception object to error handler
+// }
+
+                                //QUESTION 29
+                    //What will be the outoput of the following statements be?
+
+console.log(!!true); //TRUE
+console.log(!!"");//False 
+console.log(!!1);//TRUE
+console.log(!!-1);//True
+console.log(!!NaN); //false
+console.log(!!undefined); //false
+console.log(!!"false");//TRUE
+console.log(!!null);//False
+
+
+                            //QUESTION 30
+        //WHAT WILL BE THE VALUE STORED IN THE VARIABLE N
+            //comma 
+
+    let n = ((x=0),(y=2),(z=3))//series of expression
+    //when series of expression are presented the last value is only considered
+    //x=1 valid as an expression
+
+    
+    if(n){
+        console.log('true')
+    }else{
+        console.log('false')
+    }
+    
+
+                 //QUESTION 32
+
+//QUIRKY OPERATORS AND PRECEDENCE IN JAVASCRIPT
+//WHAT IS THE OPUTPUT OF THESE THREELINES AND WHY?
+
+let first = (! + [] * []);
+console.log('jogo',+[])//it converts into 0 or 1 since it is emply it is 0
+console.log(!+[])
+//this will give you true
+
+console.log('jogo',[])//it converts into string 
+console.log('jogo, answer',true * [])//answer will be 0
+
+
+
+
+
+let second = (! + [] + [] * []);
+console.log('the main answer',true + 0)//answer will be 1
+
+
+
+let third = (! + [] + [] + ![]).length;
+console.log([]) //will give you string which is true but 
+//if you change into number it will be 0 and will be false like below
+
+console.log(![])//it will be false
+
+//true + [] + false //since [] is a string
+//'true' + '' + 'false'
+//'truefalse'.length = 9
+
+console.log(first)
+console.log(second)
+console.log(third)
+
+                                    //QUESTION 33
+
+
+
+/**
+ * Which of the following lines will return a true and
+ * which will return false?
+ */
+
+//Arrays are object so when we compare like below it will return always false 
+ console.log(["a", "b"] == ["a", "b"]); //false 
+
+//two different arrays are concatinate which means they are turned into string then when compare it will turn the left side of the array into string too
+//['a',['b']] == 'a,b' + ''
+//'a,b' === 'a,b'
+ console.log(["a", "b"] == ["a", "b"] + []); //true
+
+ console.log(["a", "b", "c"] == ["a", "b"] + []);//false
+ console.log(["a", "b"] == ["b", "a"]);//false
+ console.log(["a", "b"] == "a,b");//true
+
+  
+
+
